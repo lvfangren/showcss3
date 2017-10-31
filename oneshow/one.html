@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style media="screen">
+    body {
+      background-color: #eee;
+    }
+
+    .ones {
+      margin: 0px auto;
+      width: 600px;
+      height: 400px;
+      /*position: absolute;*/
+      /*text-align: center;*/
+      position: relative;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    img {
+      padding: 12px 12px;
+      background-color: white;
+      width: 380px;
+      height: 265px;
+      position: absolute;
+      z-index: 1;
+    }
+
+    img:hover {
+      padding: 12px 12px;
+      background-color: white;
+      width: 380px;
+      height: 265px;
+      position: absolute;
+      top: 40px;
+      right: 290px;
+      /*图片转角,变大的实现*/
+      transform: rotate(720deg) scale(1.3);
+      -webkit-transform: rotate(720deg) scale(1.3);
+      -moz-transform: rotate(720deg) scale(1.3);
+      /*动画效果的实现*/
+      transition: 2s;
+      -webkit-transition: 2s;
+      -moz-transition: 2s;
+      /*产生阴影*/
+      box-shadow: 10px 10px 15px #ccc;
+      /*翻书效果*/
+      z-index: 2;
+    }
+
+    img:active {
+      transform: rotate(420deg) scale(1.5);
+      -webkit-transform: rotate(420deg) scale(1.5);
+      -moz-transform: rotate(420deg) scale(1.5);
+    }
+
+    .pic1 {
+      left: 0px;
+      top: 80px;
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+    }
+
+    .pic2 {
+      left: 310px;
+      top: 240px;
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+    }
+
+    .pic3 {
+      left: -250px;
+      top: 0px;
+      transform: rotate(-20deg);
+      -webkit-transform: rotate(-20deg);
+      -moz-transform: rotate(-20deg);
+    }
+
+    .pic4 {
+      right: 520px;
+      top: 210px;
+      transform: rotate(15deg);
+      -webkit-transform: rotate(15deg);
+      -moz-transform: rotate(15deg);
+    }
+
+    .pic5 {
+      left: 470px;
+      top: 160px;
+      transform: rotate(-25deg);
+      -webkit-transform: rotate(-25deg);
+      -moz-transform: rotate(-25deg);
+    }
+
+    .pic6 {
+      left: 200px;
+      transform: rotate(10deg);
+      -webkit-transform: rotate(10deg);
+      -moz-transform: rotate(10deg);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>pictor</h1>
+  <div class="ones">
+    <img src="http://static9.originoo.cn/thumbs/1013693/image/1178/11782835/api_thumb_450.jpg!thumb" alt="" class="pic1">
+    <img src="http://static9.originoo.cn/thumbs/1030327/image/1217/12172618/api_thumb_450.jpg!thumb" alt="" class="pic2">
+    <img src="http://static4.originoo.cn/thumbs/1004866/image/276/2768282/api_thumb_450.jpg!thumb" alt="" class="pic3">
+    <img src="http://st.originoo.cn/thumbs/1000745/image/1853/18532353/api_thumb_450.jpg!thumb" alt="" class="pic4">
+    <img src="http://st.originoo.cn/thumbs/1004221/image/1384/13846233/api_thumb_450.jpg!thumb" alt="" class="pic5">
+    <img src="http://st3.originoo.cn/thumbs/13194036/image/17078/170785650/api_thumb_450.jpg!thumb" alt="" class="pic6">
+  </div>
+</body>
+
+</html>
