@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <style media="screen">
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    figure{
+      position: relative;
+      width: 33%;
+      float: left;
+      overflow: hidden;
+    }
+    figure img{
+      opacity: 0.6;
+    }
+    figcaption{
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      color: white;
+      font-family: '微软雅黑';
+    }
+    /*最大小于*/
+    @media screen and (max-width:500px){
+      figure{
+        width: 100%;
+      }
+    }
+    @media screen and (min-width:501px) and (max-width:1000px){
+      figure{
+        width: 50%;
+      }
+    }
+    /*最小大于1001*/
+    @media screen and (min-width:1001px){
+        figure{
+          width: 33.333%;
+        }
+    }
+    .test1 figcaption p{
+      transform: translate(-120px,0px);
+    }
+    .test1:hover figcaption p{
+      transform: translate(100px,40px) scale(2.8) rotate(30deg);
+      transition: 2s;
+    }
+  </style>
+  <body>
+    <figure class="test1">
+      <img src="http://static9.originoo.cn/thumbs/1013693/image/1178/11782835/api_thumb_450.jpg!thumb" alt="">
+      <figcaption>
+        <h1>csodvsvds</h1>
+        <p>zhujie</p>
+      </figcaption>
+    </figure>
+    <figure>
+      <img src="http://static9.originoo.cn/thumbs/1013693/image/1178/11782835/api_thumb_450.jpg!thumb" alt="">
+      <figcaption>
+        <h1>csodvsvds</h1>
+        <p>zhujie</p>
+      </figcaption>
+    </figure>
+    <figure>
+      <img src="http://static9.originoo.cn/thumbs/1013693/image/1178/11782835/api_thumb_450.jpg!thumb" alt="">
+      <figcaption>
+        <h1>csodvsvds</h1>
+        <p>zhujie</p>
+      </figcaption>
+    </figure>
+  </body>
+</html>
