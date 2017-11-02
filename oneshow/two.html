@@ -15,9 +15,6 @@
       float: left;
       overflow: hidden;
     }
-    figure img{
-      opacity: 0.6;
-    }
     figcaption{
       position: absolute;
       top: 0px;
@@ -25,7 +22,14 @@
       color: white;
       font-family: '微软雅黑';
     }
-    /*最大小于*/
+    figure img{
+      opacity: 0.8;
+      transition:all 1s;
+    }
+    figure figcaption p,div{
+      transition:all 2s;
+    }
+      /*最大小于*/
     @media screen and (max-width:500px){
       figure{
         width: 100%;
@@ -42,35 +46,95 @@
           width: 33.333%;
         }
     }
+    .test1,.test3{
+      background-color: yellow;
+    }
     .test1 figcaption p{
       transform: translate(-120px,0px);
+      /*transition:all 2s;*/
     }
     .test1:hover figcaption p{
-      transform: translate(100px,40px) scale(2.8) rotate(30deg);
+      transform: translate(130px,40px) scale(2.8) ;
+      /*transition: 2s;*/
+    }
+    .test1:hover img{
+      opacity: 0.6;
+      transform: translate(-10px,0px);
+    }
+    .test1 figcaption p:nth-of-type(1){
+      transition-delay: 0.05s;
+    }
+    .test1 figcaption p:nth-of-type(2){
+      transition-delay: 0.1s;
+    }
+    .test1 figcaption p:nth-of-type(3){
+      transition-delay: 0.15s;
+    }
+
+    .test2{
+      background-color: green;
+    }
+    .test2 figcaption div{
+      transform: translate(0px,-550px) rotate(90deg);
+      /*background-color: red;*/
+      border: 1px solid #fff;
+    }
+    .test2:hover figcaption div{
+        transform: translate(0px,0px) rotate(360deg) scale(1.1);
+    }
+    .test2:hover img{
+      opacity: 0.5;
+    }
+
+    .test3 figcaption{
+      top: 28%;
+      left: 36%;
+    }
+    .test3 figcaption h1{
+      transform: skewX(85deg) skewY(65deg);
+      /*opacity: 0;*/
+    }
+    .test3 figcaption p{
+      transform: skewY(80deg);
+      /*opacity: 0;*/
+    }
+    .test3:hover figcaption h1{
+      transform: skewX(0deg) skewY(0deg);
       transition: 2s;
+      /*opacity: 1.0;*/
+    }
+    .test3:hover figcaption p{
+      transform: skewY(0deg);
     }
   </style>
   <body>
     <figure class="test1">
       <img src="http://static9.originoo.cn/thumbs/1013693/image/1178/11782835/api_thumb_450.jpg!thumb" alt="">
       <figcaption>
-        <h1>csodvsvds</h1>
-        <p>zhujie</p>
+        <h3>csodvsvds</h3>
+        <p>0.05s</p>
+        <p>0.1s</p>
+        <p>0.15s</p>
       </figcaption>
     </figure>
-    <figure>
+    <figure class="test2">
+      <img src="http://static9.originoo.cn/thumbs/1030327/image/1217/12172618/api_thumb_450.jpg!thumb" alt="" style="height:300px;width:450px">
+      <figcaption>
+        <h1>csodvsvds</h1>
+        <div class="" style="position:absolute;top:80px;left:100px;width:250px;height:150px;">
+          cscacaccascdsvsd
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="test3">
       <img src="http://static9.originoo.cn/thumbs/1013693/image/1178/11782835/api_thumb_450.jpg!thumb" alt="">
       <figcaption>
         <h1>csodvsvds</h1>
         <p>zhujie</p>
       </figcaption>
     </figure>
-    <figure>
-      <img src="http://static9.originoo.cn/thumbs/1013693/image/1178/11782835/api_thumb_450.jpg!thumb" alt="">
-      <figcaption>
-        <h1>csodvsvds</h1>
-        <p>zhujie</p>
-      </figcaption>
-    </figure>
+    <script type="text/javascript">
+      console.log('欢迎你老铁！');
+    </script>
   </body>
 </html>
