@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      body{
+        font-weight: bold;
+        background-color: #333;
+      }
+      .ly{
+        margin-top: 200px;
+        overflow: hidden;
+      }
+      .link{
+          float: left;
+          margin-left: 100px;
+          width: 200px;
+      }
+      img{
+        width:150px;
+        height:150px;
+
+      }
+      a{
+        padding-left:10px;
+        text-decoration: none;
+        color: green;
+        background: url('./img/allow.png') no-repeat 100px center;
+        border: 2px solid white;
+        width: 140px;
+        height: 43px;
+        display: block;
+        text-align: left;
+        line-height: 40px;
+        position: relative;
+        /*box-sizing: border-box;
+        -webkit-box-sizing: border-box;*/
+      }
+      .line{
+        display: block;
+        position: absolute;
+        background-color: white;
+        width: 0px;
+        height: 2px;
+
+      }
+      .x-top{
+        /*display: block;
+        position: absolute;
+        background-color: white;
+        width: 0px;
+        height: 2px;*/
+        top: -2px;
+        left: -90px;
+      }
+      .x-buttom{
+        /*width: 20px;
+        background-color: red;*/
+        top: 42px;
+        right: -90px;
+      }
+      img:hover{
+        -webkit-transform: scale(1.4) rotate(360deg);
+        transform: scale(1.2) rotate(360deg);
+        -webkit-transition: 2s;
+        transition: 2s;
+      }
+      a:hover{
+        background: url('./img/allow.png') no-repeat 113px center;
+        -webkit-transition: 1s;
+        -moz-transition: 1s;
+        transition: 1s;
+        border: 3px solid white;
+      }
+      a:hover .x-top{
+        -webkit-transform: translate(90px,-1px);
+        -webkit-transition: 1s;
+        width: 80px;
+      }
+      a:hover .x-buttom{
+        -webkit-transform: translate(-90px,1px);
+        -webkit-transition: 1s;
+        width: 80px;
+      }
+    </style>
+  </head>
+  <body>
+      <div class="ly">
+        <div class="link one">
+          <img src="./img/mission.png" alt="">
+          <a href="#" data='my name is mssion'>
+            <span class="line x-top"></span>
+            <span class="line x-right"></span>
+            <span class="line x-left"></span>
+            <span class="line x-buttom"></span>
+            mssion
+          </a>
+        </div>
+        <div class="link two">
+          <img src="./img/play.png" alt="">
+          <a href="#" data='my name is play'>
+            <span class="line x-top"></span>
+            <span class="line x-right"></span>
+            <span class="line x-left"></span>
+            <span class="line x-buttom"></span>
+            play
+          </a>
+        </div>
+        <div class="link three">
+          <img src="./img/touch.png" alt="">
+          <a href="#" data='my name is touch'>
+            <span class="line x-top"></span>
+            <span class="line x-right"></span>
+            <span class="line x-left"></span>
+            <span class="line x-buttom"></span>
+            touch
+          </a>
+        </div>
+      </div>
+  </body>
+</html>
