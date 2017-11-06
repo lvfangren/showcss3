@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>雪碧图demo</title>
+  </head>
+  <style media="screen">
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    a{
+      text-decoration: none;
+      color: black;
+    }
+    a:hover{
+      color: green;
+    }
+    ul li{
+      list-style-type: none;
+      height: 40px;
+      /*padding-left: 60px;*/
+      line-height: 40px;
+      border-bottom: 1px solid black;
+      display: block;
+      overflow: hidden;
+    }
+    nav{
+      width: 180px;
+      background-color: #f8f8f8;
+      border: 1px solid black;
+    }
+    li i{
+      display: inline;
+      background: url('./img/sidebar.png') no-repeat;
+      width: 30px;
+      height: 24px;
+      float: left;
+      margin: 8px 14px;
+    }
+    /*这里是已知了每个小图距下24个像素，距左40个像素.这里写了一大段感觉太麻烦，我会用selss来代替*/
+    .list-1 i{
+      background-position: 0 0;
+    }
+    .list-2 i{
+      background-position: 0 -24px;
+    }
+    .list-3 i{
+      background-position: 0 -48px;
+    }
+    .list-4 i{
+      background-position: 0 -72px;
+    }
+    .list-5 i{
+      background-position: 0 -96px;
+    }
+    .list-6 i{
+      background-position: 0 -120px;
+    }
+    .list-7 i{
+      background-position: 0 -144px;
+    }
+    .list-8 i{
+      background-position: 0 -168px;
+    }
+  </style>
+  <body>
+    <nav>
+      <ul>
+        <li class="list-1">
+              <i></i>
+              <a href=''>服装内衣</a>
+          </li>
+          <li class="list-2">
+              <i></i>
+              <a href=''>鞋包配饰</a>
+          </li>
+          <li class="list-3">
+              <i></i>
+              <a href=''>运动户外</a>
+          </li>
+          <li class="list-4">
+              <i></i>
+              <a href=''>珠宝手表</a>
+          </li>
+          <li class="list-5">
+              <i></i>
+              <a href=''>手机数码</a>
+          </li>
+          <li class="list-6">
+              <i></i>
+              <a href=''>家电办公</a>
+          </li>
+          <li class="list-7">
+              <i></i>
+              <a href=''>护肤彩妆</a>
+          </li>
+          <li class="list-8">
+              <i></i>
+              <a href=''>母婴用品</a>
+          </li>
+      </ul>
+    </nav>
+  </body>
+</html>
