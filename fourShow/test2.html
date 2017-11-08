@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>css3渐变</title>
+    <style media="screen">
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      .cl-1{
+        display: block;
+        width: 400px;
+        height: 400px;
+        /*默认情况下的渐变，即从上到下的线性渐变*/
+        background: -webkit-linear-gradient(red,green);
+        /*从左到右的线性渐变*/
+        background: -webkit-linear-gradient(left,blue,red);
+        /*对角方式的线性渐变*/
+        background: -webkit-linear-gradient(left top,blue,green);
+        /*径向渐变*/
+        background: -webkit-radial-gradient(red, green, blue); 
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cl-1">
+
+    </div>
+  </body>
+</html>
