@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <canvas id="canvas" width="300" height="300">canvas</canvas>
+    <script type="text/javascript">
+      var x=document.getElementById('canvas');
+      if(x.getContext){
+        var con=x.getContext('2d');
+        // con.strokeStyle='red';
+        // con.fillStyle='#0000ff';
+
+//绘制红色，以距原点10，10单位为矩形左上角，宽40，高40的矩形
+        con.fillStyle='#ff0000';
+        con.fillRect(10,10,40,40);
+// 绘制，以距原点30，30单位为矩形左上角，宽50，高50的蓝色半透明矩形
+        con.fillStyle='rgba(0,0,255,0.3)';
+        con.fillRect(30,30,50,50);
+// 绘制，以距原点20，20单位为矩形左上角，宽40，高40的绿色描边矩形
+        con.strokeStyle='green';
+        con.strokeRect(20,20,40,40);
+// 绘制，以距原点150，150单位为矩形左上角，宽20，高20的蓝色半透明描边矩形
+        con.strokeStyle='rgba(0,0,255,0.3)';
+        con.strokeRect(150,150,20,20);
+//在距原点15,15处清除一个宽10，高10的矩形区域
+        con.clearRect(15,15,10,10);
+      }
+    </script>
+  </body>
+</html>
