@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+        a:link{
+          color: blue;
+        }
+        a:visited{
+          color: red;
+        }
+        a:hover{
+          color: green;
+        }
+        a:active{
+          color: #9863;
+        }
+        .xxoo:before{
+          content: 'center';
+        }
+        .xxoo::after{
+          content: 'end';
+          clear: both;
+          display: block;
+        }
+        .ellipsis{
+          overflow: hidden;
+          /*max-width: 600px;*/
+          /*width: 700px;*/
+          text-overflow: ellipsis;
+           white-space: nowrap;
+        }
+    </style>
+  </head>
+  <body>
+    <a href="#">loveandhate</a>
+    <div class="xxoo">
+      <p style="text-transform: uppercase; text-shadow: 1px 1px 2px black;">first</p>
+    </div>
+    <p class="ellipsis">
+  唐僧：你想要啊？你要是想要的话你就说话嘛，你不说我怎么知道你想要呢，虽然你很有诚意地看着我，可是你还是要跟我说你想要的。
+  难道你真的想要吗？你想要的话我会给你的，你想要我怎么可能不给你呢？不可能你想我不给你，你不想要我却偏给你的。
+  大家讲道理嘛！现在我数三下，你要说清楚你要不要……你真的想要吗？那你就拿去吧！你不是真的想要吧？
+</p>
+<ul>
+  <li>a</li>
+  <li>a</li>
+  <li>a</li>
+  <li>a</li>
+</ul>
+  </body>
+</html>

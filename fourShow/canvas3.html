@@ -10,9 +10,26 @@
       var x=document.getElementById('canvas');
       if(x.getContext){
         var con=x.getContext('2d');
-          
+        // 开始绘图
+        con.beginPath();
+        //绘制距坐标点100，100，半径99，转动角度0到2*Math。PI的外园
+        con.arc(100,100,99,0,2*Math.PI,false);
+        // 移动绘图游标
+        con.moveTo(194,100);
+        //绘制距坐标点100，100，半径94，转动角度0到2*Math。PI的内园
+        con.arc(100,100,94,0,2*Math.PI,false);
+        con.moveTo(100,100);
+        con.lineTo(10,100);
 
+        con.moveTo(100,100);
+        con.lineTo(100,10);
+        con.stroke();
 
+        con.font="bold 14px Arial";
+        con.textAlign='center';
+        // con.strokeText();
+        // con.textBaseline='middle';
+        con.fillText('12',100,10);
       }
     </script>
   </body>
