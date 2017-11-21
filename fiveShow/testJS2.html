@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>HTML5 Web存储，localStorage</title>
+  </head>
+  <body>
+    <!-- demo 来源于材料教材 -->
+    <div style="border: 2px dashed #ccc;width:320px;text-align:center;">
+    <label for="keyname">别名(key):</label>
+    <input type="text" id="keyname" name="keyname" class="text"/>
+    <br/>
+    <label for="sitename">网站名：</label>
+    <input type="text" id="sitename" name="sitename" class="text"/>
+    <br/>
+    <label for="siteurl">网 址：</label>
+    <input type="text" id="siteurl" name="siteurl"/>
+    <br/>
+    <input type="button" onclick="save()" value="新增记录"/>
+    <hr/>
+    <label for="search_site">输入别名(key)：</label>
+    <input type="text" id="search_site" name="search_site"/>
+    <input type="button" onclick="find()" value="查找网站"/>
+    <p id="find_result"><br/></p>
+</div>
+<script type="text/javascript">
+  function save(){
+    var site=new Object();
+    site.keyname=document.getElementById('keyname').value;
+    site.sitename=document.getElementById('sitename').value;
+    site.siteurl=document.getElementById('siteurl').value;
+    var str=JSON.stringify(site);
+    localStorage.setItem(site.keyname,str);
+    console.log("存储成功");
+  }
+  function find(){
+    var search_site=document.getElementById('search_site').value;
+    var str=localStorage.getItem(search_site);
+    var find_result=document.getElementById('find_result');
+    var site=JSON.parse(str);
+    find_result.innerHTML=search_site+'ddddd'+site.sitname+'.acascacas'+site.siteurl;
+  }
+</script>
+  </body>
+</html>
