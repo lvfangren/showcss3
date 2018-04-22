@@ -1,0 +1,16 @@
+#door{
+  margin: 0 auto;
+  height: 477px;
+  position: relative;
+  overflow: hidden;
+  /* width: 975px; */
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+#door img{
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  border-left: 1px solid #ccc;
+}
