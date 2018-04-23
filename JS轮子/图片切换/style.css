@@ -1,0 +1,46 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background: #333;
+  margin: 20px;
+}
+#grid{
+  max-width: 760px;
+  margin: 0 auto;
+  border: 3px solid #fff;
+  background-color: #fff;
+  overflow: hidden;
+}
+.grid-top img,.grid-bottom img{
+  width: 100%;
+}
+.grid-bottom{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: 5px;
+}
+@keyframes change {
+  to{
+    opacity: 1;
+  }
+}
+
+.fade-in{
+  opacity: 0;
+  animation: change 0.5s;
+}
+
+
+/*
+嗯，这种方式实现上面的效果很麻烦
+.grid-bottom{
+  overflow:hidden;
+}
+.grid-bottom img{
+  width: 24%;
+  display: block;
+  float: left;
+  border: 1px solid #fff;
+} */
