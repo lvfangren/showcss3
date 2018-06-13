@@ -1,0 +1,141 @@
+1:Firefox 不支持 DOM 对象的 outerHTML、innerText、outerText 属性
+2:setTimeout的方式(注册事件)：有两个参数，第一个参数是函数，第二参数是时间值。调用setTimeout时，把函数参数，放到事件队列中。等主程序运行完，再调用。
+3:w3c 制定的 javascript 标准事件模型，正确的顺序以及描述是事件捕获->事件处理->事件冒泡
+
+
+对象包含一系列的属性，这些属性是无序的，而每个属性都以键值对形式表示，需要注意的是key是字符串
+每个对象中的属性有很多的描述标签，用于描述它的访问权限；
+每个对象都会在其内部初始化一个属性，就是 __proto__，当我们访问一个对象的属性 时，如果这个对象内部不存在这个属性，那么他就会去__proto__里找这个属性，这个__proto__又会有自己的__proto__，于是就这样 一直找下去，也就是我们平时所说的原型链的概念。
+通过new构造对象，它的原型会指向构造器的prototype属性
+  例如：（原型的方式）
+  function foo(){}
+  foo.prototype.z=1000;
+  var obj=new foo();
+  obj.x=1;
+  obj.y=2;
+打印obj.z它在obj里找不到会延链找foo.prototype里的，再找不到再往上走
+对象方法hasOwnProperty，判断属性是否为对象实例所有
+  还有Object.create的方式来创建对象
+
+
+对象方法getOwnPropertyDescriptor,获取一属性的描述标签。参数1传对象，参数2传属性
+属性操作：
+    1：读写
+    2：属性检测
+        in操作符会向原型链往上查找的
+        hasOwnProperty方法，判断属性是否为对象实例所有
+        对象propertyIsEnumerable方法，判断指定属性是否可被枚举
+        Object.defineProperty()，给对象添加属性，通过o.x给o添加新属性时，属性的特性（上面说的属性标签）默认都为true，而通过Object.defineProperty(o, 'x')给o添加属性时，属性的特性默认都为false；
+    3：属性的getter和setter方法
+    4：属性的getter和setter方法和原型链
+
+属性标签：
+  Object.getOwnPropertyDescriptor方法，可以返回一个对象，结果显示这个对象下的属性标签
+  例子：Object.getOwnPropertyDescriptor({age:90},'age')
+结果：
+{value: 90, writable: true, enumerable: true, configurable: true}
+  该方法默认属性标签为true我们可以通过Object.defineProperty()来修改属性标签的值
+JavaScript 语言的对象体系，不是基于“类”的，而是基于构造函数（constructor）和原型链（prototype）。
+
+对象标签：有三种proto（__proto__） class extensible
+  Object.isExtensible方法，用来判断对象是否可以扩展（extensible）
+  Object.preventExtensions方法，用来阻止对象扩展
+  Object.seal方法，在Object.preventExtensions方法的基础上对之前定义的属性也加以限制，表现为属性标签configurable的值变为false
+  再狠一点把对象属性冻结，采用Object.freeze方法（具体冻结后属性标签值的变化，我们还是用Object.getOwnPropertyDescriptor方法查看）
+注意上述方法只是对对象实例有用，对其原型链无任何影响
+
+对象方法：valueOf和toString方法，需要理解它们
+
+
+function.prototype上的call  apply bind方法需要注意
+
+
+this指向：
+      一般函数的this
+      作为对象方法的函数的this
+      对象原型链上的this
+      get/set方法与this
+      构造器中的this
+      apply/call方法与this
+      bind方法与this（注意bind方法IE9+才有）
+
+      fn.call(o);  //改变函数fn的作用域对象
+
+      fn.apply(o);  //改变函数fn的作用域对象
+
+      fn.bind(o);  //将函数fn的作用域绑定到对象o上
+this在运行时才确定所指向的具体对象是谁。
+
+
+
+JavaScript 语言使用构造函数（constructor）作为对象的模板
+严格模式中，函数内部的this不能指向全局对象，默认等于undefined
+
+使用new命令时，它后面的函数依次执行下面的步骤。
+  创建一个空对象，作为将要返回的对象实例。
+  将这个空对象的原型，指向构造函数的prototype属性。
+  将这个空对象赋值给函数内部的this关键字
+  开始执行构造函数内部的代码。
+
+Object.getPrototypeOf方法传入一个对象，返回该对象的原型
+相当于GOOGLE浏览器下的对象属性__proto__
+
+
+如果构造函数内部有return语句，而且return后面跟着一个对象，new命令会返回return语句指定的对象；否则，就会不管return语句，返回this对象
+
+另一方面，如果对普通函数（内部没有this关键字的函数）使用new命令，则会返回一个空对象。
+
+函数内部可以使用new.target属性。如果当前函数是new命令调用，new.target指向当前函数，否则为undefined。
+
+构造函数作为模板，可以生成实例对象。但是，有时拿不到构造函数，只能拿到一个现有的对象。我们希望以这个现有的对象作为模板，生成新的实例对象，这时就可以使用Object.create()方法。
+
+
+
+由于严格模式中，函数内部的this不能指向全局对象，默认等于undefined，导致不加new调用会报错
+
+
+函数内部可以使用new.target属性。如果当前函数是new命令调用，new.target指向当前函数，否则为undefined。
+
+
+
+
+三种继承：
+  正常的原型继承：
+
+  function Anmial(){
+
+  }
+  function Cat(){
+
+  }
+  Cat.prototype=new Anmial()
+  var xx=new Anmial()
+
+  原型冒充：
+
+  function Anmial(age,name){
+    this.age=age;
+    this.name=name;
+  }
+  function Cat(age,name,color){
+    Anmial.apply(this,arguments);
+    this.color=color;
+  }
+  var xx=new Cat(21,'LFR','blue')
+
+  赋制继承：
+
+  function Anmial(age,name){
+    this.age=age;
+    this.name=name;
+  }
+  function Cat(color){
+    this.color=color;
+    this.extends=function(arg){
+      for (var i in arg) {
+        this[i]=arg[i];
+      }
+    }
+  }
+  var tiger=new Cat('red')
+  tiger.extends(new Anmial(21,'xxoo'))

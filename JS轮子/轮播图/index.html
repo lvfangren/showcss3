@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      #wrap{
+        width: 600px;
+        margin: 50px auto;
+        height: 400px;
+        position: relative;
+        overflow: hidden;
+      }
+      #picwrap{
+        position: absolute;
+        height: 400px;
+        top: 0;
+        left: 0;
+        width: 99999px;
+      }
+      .bu{
+        width: 40px;
+        height: 40px;
+        display: none;
+        background-color: rgba(0, 0, 0, 0.3);
+        text-align: center;
+        font-size: 30px;
+        cursor: pointer;
+        color: #fff;
+        line-height: 40px;
+        position: absolute;
+        top: 50%;
+      }
+      .bu:hover{
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+      #picwrap img{
+        float: left;
+        border-radius:10px;
+      }
+      #wrap:hover>.bu{
+        display: block;
+      }
+      #button{
+        position: absolute;
+        bottom: 10px;
+        text-align: center;
+        width: 100%;
+      }
+      #button span{
+        border-radius: 50%;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        cursor: pointer;
+        border: 1px solid #fff;
+        margin-left: 5px;
+      }
+      #button span:hover{
+        background: #ff4500;
+      }
+      .on{
+        background: #ff4500;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="wrap">
+      <div id="picwrap" style="left:0;">
+        <img src="images/1.jpg" alt="pic" title="testDemo">
+        <img src="images/2.jpg" alt="pic" title="testDemo">
+        <img src="images/3.jpg" alt="pic" title="testDemo">
+        <img src="images/4.jpg" alt="pic" title="testDemo">
+        <img src="images/5.jpg" alt="pic" title="testDemo">
+      </div>
+      <div id="button">
+        <span class="on"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <span class="bu" style="left:20px;" id="pre">&lt;</span>
+      <span class="bu" style="right:20px;" id="next">&gt;</span>
+    </main>
+    <script type="text/javascript">
+      var wrap=document.getElementById('wrap');
+      var picwrap=document.getElementById('picwrap');
+      var pre=document.getElementById('pre');
+      var next=document.getElementById('next');
+      var bu=document.getElementById('button').getElementsByTagName('span');
+
+// 图片数量
+      var picLength=5;
+      // 全局计数器
+      var index=0;
+
+
+// 下一张
+      next.onclick=function(){
+        index=Math.abs(parseInt(picwrap.style.left))/600;
+        changeColor(index);
+        if (parseInt(picwrap.style.left)<=-2400) {
+          picwrap.style.left='0px';
+        }else{
+          picwrap.style.left=parseInt(picwrap.style.left)-600+'px';
+        }
+      }
+      // 上一张
+      pre.onclick=function(){
+        index=Math.abs(parseInt(picwrap.style.left))/600;
+        changeColor(index);
+        if(parseInt(picwrap.style.left)==0){
+          picwrap.style.left=parseInt(picwrap.style.left)-(picLength-1)*600+'px';
+        }else {
+          picwrap.style.left=parseInt(picwrap.style.left)+600+'px';
+        }
+      }
+// 循环为按钮绑定click事件
+      for (var i = 0; i < bu.length; i++) {
+        (function(i){
+          bu[i].onclick=function(){
+            picwrap.style.left=0-(i)*600+'px';
+            console.log(picwrap.style.left);
+            index=i;
+            console.log(index);
+            changeColor(index);
+          }
+        })(i)
+      }
+
+      // 全局定时器
+      setInterval(function(){
+        index++;
+        index%=picLength;
+        changeColor(index);
+        if (parseInt(picwrap.style.left)<=-2400) {
+          picwrap.style.left='0px';
+        }else{
+          picwrap.style.left=parseInt(picwrap.style.left)-600+'px';
+        }
+      },5000)
+
+// 动态绑定className，实现按钮背景颜色的变化
+      function changeColor(myindex){
+        for(var i=0;i<bu.length;i++){
+          bu[i].className='';
+        }
+        bu[myindex].classList.add('on');
+      }
+    </script>
+  </body>
+</html>
