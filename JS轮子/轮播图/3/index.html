@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style media="screen">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #wrap {
+      width: 980px;
+      height: 210px;
+      margin: 100px auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #picwrap {
+      position: relative;
+      width: 9999px;
+    }
+
+    .bu {
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      display: block;
+      font-weight: bold;
+      cursor: pointer;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.2);
+      font-size: 40px;
+      position: absolute;
+      top: 50%;
+    }
+
+    img {
+      float: left;
+    }
+
+    #pre {
+      left: 0;
+    }
+
+    #next {
+      right: 0;
+    }
+
+    #button {
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+    }
+
+    #button span {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      background: rgba(33, 33, 33, 0.3);
+      border-radius: 50%;
+      margin-left: 10px;
+    }
+
+   .on {
+      background-color: #fff !important;
+    }
+  </style>
+</head>
+
+<body>
+  <main id="wrap">
+    <div id="picwrap" style="left:0px;">
+      <img src="images/1.jpg" alt="pic" title="testDemo1" />
+      <img src="images/2.png" alt="pic" title="testDemo2" />
+      <img src="images/3.jpg" alt="pic" title="testDemo3" />
+      <img src="images/4.png" alt="pic" title="testDemo4" />
+      <img src="images/5.jpg" alt="pic" title="testDemo5" />
+    </div>
+    <div id="button">
+      <span class="on"></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <span class="bu" id="pre">&lt;</span>
+    <span class="bu" id="next">&gt;</span>
+  </main>
+  <script type="text/javascript">
+    var wrap = document.getElementById('wrap');
+    var picwrap = document.getElementById('picwrap');
+    var pre = document.getElementById('pre');
+    var next = document.getElementById('next');
+    var bu = document.getElementById('button').getElementsByTagName('span');
+
+    // 图片数量
+    var picLength = bu.length;
+    // 全局计数器
+    var index = 0;
+    // 图片宽度
+    var picWidth = wrap.offsetWidth;
+    // next下页的边界
+    var nextBound = -(picWidth * (picLength - 1));
+    // 定时时间
+    var time=4000;
+
+    // next点击事件
+    next.onclick = function() {
+      index=Math.abs(parseInt(picwrap.style.left))/picWidth;
+      changeColor(index);
+      if (parseInt(picwrap.style.left) > nextBound) {
+        picwrap.style.left = parseInt(picwrap.style.left) - picWidth + 'px';
+      } else {
+        picwrap.style.left = 0 + 'px';
+      }
+    }
+    //pre点击事件
+    pre.onclick = function() {
+      index=Math.abs(parseInt(picwrap.style.left))/picWidth;
+      changeColor(index);
+      if (parseInt(picwrap.style.left) == 0) {
+        console.log(nextBound);
+        picwrap.style.left = nextBound + 'px';
+      } else {
+        picwrap.style.left = parseInt(picwrap.style.left) + picWidth + 'px';
+      }
+    }
+
+    // 自动翻页
+    var timer=setInterval(auto,time);
+
+    // 动态绑定className，实现按钮背景颜色的变化
+    function changeColor(myindex) {
+      for (var i = 0; i < bu.length; i++) {
+        bu[i].className = '';
+      }
+      bu[myindex].classList.add('on');
+    }
+
+    // 定时函数
+    function auto(){
+      index+=1;
+      index%=picLength;
+      changeColor(index);
+      if (parseInt(picwrap.style.left) > nextBound) {
+        picwrap.style.left = parseInt(picwrap.style.left) - picWidth + 'px';
+      } else {
+        picwrap.style.left = 0 + 'px';
+      }
+    }
+  </script>
+</body>
+
+</html>
