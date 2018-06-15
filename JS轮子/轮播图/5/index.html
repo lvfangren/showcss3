@@ -9,24 +9,25 @@
         padding: 0;
       }
       #wrap{
-        width: 711px;
-        height: 342px;
+        width: 850px;
+        height: 150px;
         position: relative;
-        margin: 54px auto;
+        margin: 100px auto;
+        overflow: hidden;
       }
-      #picwrap{
+       #picwrap{
         position: absolute;
         top: 0;
         left: 0;
-        width: inherit;
-        height: inherit;
+        width: 99999px;
+        overflow: hidden;
       }
       #picwrap>img{
-        position: absolute;
-        top: 0;
-        left: 0;
+        float: left;
+        margin: 0 10px;
       }
-      #controls{
+
+      /*#controls{
         width: 100%;
         height: 30px;
         cursor: pointer;
@@ -34,7 +35,7 @@
         bottom: 0;
         z-index: 999;
       }
-      #controls>span{
+       #controls>span{
         display: block;
         float: left;
         width: 176px;
@@ -48,6 +49,19 @@
       }
       .cc{
         background: rgba(255,0,0,0.7) !important;
+      } */
+      .bu{
+        width: 30px;
+        height: 80px;
+        position: absolute;
+        top: 50%;
+        text-align: center;
+        line-height: 80px;
+        color: #fff;
+        font-size: 40px;
+        cursor: pointer;
+        margin-top: -40px;
+        background: rgba(0,0,0,0.2);
       }
     </style>
   </head>
@@ -63,24 +77,36 @@
         <img src="images/2.jpg" alt="pic" title="testDemo2" />
         <img src="images/3.jpg" alt="pic" title="testDemo3" />
         <img src="images/4.jpg" alt="pic" title="testDemo4" />
+        <img src="images/5.jpg" alt="pic" title="testDemo5" />
+        <img src="images/21.jpg" alt="pic" title="testDemo21" />
+        <img src="images/22.jpg" alt="pic" title="testDemo22" />
+        <img src="images/23.jpg" alt="pic" title="testDemo23" />
+        <img src="images/24.jpg" alt="pic" title="testDemo24" />
+        <img src="images/25.jpg" alt="pic" title="testDemo25" />
       </div>
-      <!-- <div class="controls">
-        <span class="bu" id="one"></span>
-        <span class="bu" id="two">&gt;</span>
-        <span class="bu" id="three">&gt;</span>
-        <span class="bu" id="four">&gt;</span>
-      </div> -->
-      <div id="controls">
+      <div id="controls" style="display:none;">
         <span class="cc">聚蟹客 中秋好礼</span>
         <span class="">赚网 相思惠明月</span>
         <span class="">草莓网 彩妆大促</span>
         <span class="">中秋送礼 浓情促销</span>
       </div>
+
+      <span class="bu" id="pre" style="left:0;">&lt;</span>
+      <span class="bu" id="next" style="right:0;">&gt;</span>
     </main>
     <script type="text/javascript">
         var img=document.getElementById('picwrap').getElementsByTagName('img');
         var imgnum=img.length;
-        var controls=document.getElementById('controls').getElementsByTagName('span');
+        // var controls=document.getElementById('controls').getElementsByTagName('span');
+
+        var picwrap=document.getElementById('picwrap');
+        var pre=document.getElementById('pre');
+        var next=document.getElementById('next');
+
+        pre.onclick=function(){
+          
+          picwrap.style.left=parseInt(picwrap.style.left)-850+'px'
+        }
 
 
         var index=0;
@@ -105,22 +131,6 @@
   	      controls[i].onmouseover=function(){clearInterval(timer);}
   	      controls[i].onmouseout=function(){timer=setInterval(auto,4000);}
         }
-
-        // function clickChange(el){
-        //   for (var i = 0; i < el.length; i++) {
-        //     (function(i){
-        //       el[i].onclick=function(){
-        //         // console.log(this);
-        //         // console.log(this.changeColor);
-        //         // console.log(changeColor);
-        //         // console.log(i);
-        //         changeColor(i);
-        //       }
-        //     })(i)
-        //   }
-        // }
-
-      //  clickChange(controls);
 
         function changeColor(myindex){
           for (var i = 0; i < controls.length; i++) {
