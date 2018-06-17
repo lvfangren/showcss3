@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <script type="text/javascript" src="easyPlugin.js">
+
+    </script>
     <style media="screen">
       *{
         margin: 0;
@@ -95,19 +98,28 @@
       <span class="bu" id="next" style="right:0;">&gt;</span>
     </main>
     <script type="text/javascript">
-        var img=document.getElementById('picwrap').getElementsByTagName('img');
-        var imgnum=img.length;
+/*        var img=document.getElementById('picwrap').getElementsByTagName('img');
+        // var imgnum=img.length;
+
         // var controls=document.getElementById('controls').getElementsByTagName('span');
 
         var picwrap=document.getElementById('picwrap');
         var pre=document.getElementById('pre');
         var next=document.getElementById('next');
 
-        pre.onclick=function(){
-          
-          picwrap.style.left=parseInt(picwrap.style.left)-850+'px'
-        }
+        var moveLength=850;
 
+
+        pre.onclick=changePic;
+        next.onclick=changePic;
+
+        function changePic(){
+          if (parseInt(picwrap.style.left)<=-moveLength) {
+              picwrap.style.left=0+'px';
+          }else {
+            picwrap.style.left=parseInt(picwrap.style.left)-moveLength+'px'
+          }
+        }
 
         var index=0;
         var MAC=0;
@@ -117,20 +129,11 @@
 
         function auto(){
           index++;
-          index=index%imgnum;
-          changeColor(index);
+          // index=index%imgnum;
+          // changeColor(index);
+          changePic();
         }
 
-        for(var i=0;i<controls.length;i++){
-  	        controls[i].index=i;
-  	        controls[i].onclick=function(){
-  	 	          index=this.index;
-  	 	          index=index%imgnum;
-  	 	          changeColor(index)
-  	            }
-  	      controls[i].onmouseover=function(){clearInterval(timer);}
-  	      controls[i].onmouseout=function(){timer=setInterval(auto,4000);}
-        }
 
         function changeColor(myindex){
           for (var i = 0; i < controls.length; i++) {
@@ -140,7 +143,17 @@
           img[myindex].style.zIndex=++MAC;
           console.log(MAC);
         }
+*/
 
+        // var temp=new seeding('picwrap','pre','next')
+        // console.log(temp);
+        // temp.pre=sedding.changePic()
+        // temp.next=sedding.changePic()
+        Seeding(
+          'picwrap',
+          'pre',
+          'next'
+        )
     </script>
   </body>
 </html>

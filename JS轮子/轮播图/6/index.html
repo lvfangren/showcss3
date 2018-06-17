@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <title>旋转木马</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .poster-main {
+      margin: 50px auto;
+      width: 980px;
+      height: 280px;
+      position: relative;
+    }
+
+    .poster-list {
+      list-style: none;
+      position: relative;
+      width: 100%;
+      height: 240px;
+    }
+
+    .poster-item {
+      position: absolute;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 5px #ccc;
+    }
+
+    .poster-item0 {
+      left: 0;
+      top: 67px;
+      z-index: 1;
+      width: 240px;
+      height: 105px;
+    }
+
+    .poster-item1 {
+      left: 100px;
+      top: 42px;
+      width: 360px;
+      height: 157px;
+      z-index: 2;
+    }
+
+    .poster-item2 {
+      top: 0;
+      left: 215px;
+      z-index: 3;
+    }
+
+    .poster-item3 {
+      top: 42px;
+      width: 360px;
+      height: 157px;
+      z-index: 2;
+      left: 505px;
+    }
+
+    .poster-item4 {
+      top: 67px;
+      width: 240px;
+      height: 105px;
+      z-index: 1;
+      left: 740px;
+    }
+
+    .poster-controls {
+      text-align: center;
+      position: absolute;
+      width: 100%;
+      height: 40px;
+      bottom: 0;
+      left: 0;
+      line-height: 40px;
+    }
+
+    .poster-controls>span {
+      display: inline-block;
+      background-color: #666;
+      width: 15px;
+      height: 15px;
+      border-radius: 100%;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .poster-controls span+span {
+      margin-left: 8px;
+    }
+
+    .poster-controls span.cur {
+      background-color: orange;
+    }
+  </style>
+</head>
+
+<body>
+  <div class='poster-main' id='poster-main'>
+    <ul class='poster-list' id='poster-list'>
+      <li class='poster-item poster-item0'><a><img src='images/1.jpg'></a></li>
+      <li class='poster-item poster-item1'><a><img src='images/2.jpg'></a></li>
+      <li class='poster-item poster-item2'><a><img src='images/3.jpg'></a></li>
+      <li class='poster-item poster-item3'><a><img src='images/4.jpg'></a></li>
+      <li class='poster-item poster-item4'><a><img src='images/5.jpg'></a></li>
+    </ul>
+    <div class='poster-controls' id='poster-controls'>
+      <span></span>
+      <span></span>
+      <span class='cur'></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</body>
+<script type="text/javascript">
+  var controlsSpan=document.getElementById('poster-controls').getElementsByTagName('span');
+  var wrap=document.getElementById('poster-list');
+  var liPic=document.getElementsByTagName('li');
+
+  var test=document.getElementsByTagName('img');
+
+
+
+  var picNum=liPic.length;
+  var index=0;
+  var MAC=1;
+
+  var timer=setInterval(function(){
+    index++;
+    index%=picNum;
+    scroll(index);
+  },4000)
+
+  // var attr=[]
+  //
+  // for (var i = 0; i < picNum; i++) {
+  //   attr.push(
+  //     {
+  //       left:getStyle(liPic[i],'left'),
+  //       top:getStyle(liPic[i],'top'),
+  // 		  width:getStyle(liPic[i],'width'),
+  // 		  height:getStyle(liPic[i],'height'),
+  // 		  zIndex:getStyle(liPic[i],'zIndex')
+  //     }
+  //   )
+  // }
+
+
+//   function getStyle(elem,cssname){
+// 	   if(window.getComputedStyle){
+//        // DOM2级样式获取，见红宝书P315页
+// 		     return window.getComputedStyle(elem)[cssname];
+// 	      }else{
+//           //兼容IE， 元素的currentStyle属性与上方法相同，同样是为了获取元素的所有样式，具体见红宝书
+// 		        return elem.currentStyle[cssname];
+// 	      }
+// }
+
+  function scroll(arg){
+    changeColor(arg)
+    changeCenter()
+  }
+
+  function changeColor(arg){
+    for (var i = 0; i < picNum; i++) {
+      controlsSpan[i].className=''
+    }
+    controlsSpan[arg].classList.add('cur')
+  }
+
+  var picCenter=Math.round(picNum/2);
+
+// 图片变换函数，不用参考的方法实现，在这里用切换图片src属性来实现。
+  function changeCenter(){
+    var str='./images/';
+    for (var i = 0; i <picNum; i++) {
+            var ss=test[i].src;
+            var sss=ss.replace(/\D/g,'')
+// 正则这再好一点就不用LVF这个了
+            var LVF=parseInt(sss[sss.length-1]);
+            if (++LVF>=6) {
+              test[i].src=str+1+'.jpg';
+            }else {
+              test[i].src=str+LVF+'.jpg';
+            }
+
+    }
+  }
+
+</script>
+</html>
