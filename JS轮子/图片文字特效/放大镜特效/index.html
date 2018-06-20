@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style media="screen">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .smallBox {
+      width: 350px;
+      height: 350px;
+      border: 1px solid #ccc;
+      cursor: move;
+      position: relative;
+    }
+
+    .bigBox {
+      width: 400px;
+      height: 400px;
+      background: url(./images/big.jpg) no-repeat;
+      position: absolute;
+      left: 450px;
+      top: 50px;
+      border: 1px solid #ccc;
+    }
+
+    #mainBox {
+      width: 175px;
+      height: 175px;
+      position: absolute;
+      background-color: rgba(133, 133, 0, 0.2);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="smallBox" id="smallBox">
+    <img src="./images/small.jpg" alt="pic">
+  </div>
+  <div class="bigBox" id="bigBox">
+
+  </div>
+  <script type="text/javascript">
+    var smallBox = document.getElementById('smallBox')
+    var bigBox = document.getElementById('bigBox')
+
+    smallBox.onmouseenter = function(event) {
+      console.log(event);
+      var mainBox = document.createElement('div')
+      mainBox.id = 'mainBox'
+      smallBox.appendChild(mainBox);
+      setPos(event);
+/*
+  offsetWidth：内容+内边距(padding)+边框+滚动条宽度
+
+  clientWidth：内容+内边距(padding)
+
+  scrollWidth：内容+内边距(padding)+任何溢出内容的尺寸，如果内容正好和内容区域匹配而没有溢出，这些属性与clientWidth和clientHeight相等。
+*/
+    }
+    var swWidth=smallBox.clientWidth;
+    var swHeight=smallBox.clientHeight;
+    var ratio=2;
+
+    smallBox.onmouseleave=function(){
+      smallBox.removeChild(mainBox);
+      bigBox.style.display='none';
+
+    }
+
+    smallBox.onmousemove=function(event){
+      setPos(event)
+    }
+
+    function setPos(event){
+      var width=mainBox.clientWidth;
+  		var height=mainBox.clientHeight;
+  		var pos=getPosInElem(event,smallBox);
+      var left=pos.x-width/2;
+      var top=pos.y-height/2;
+      if(left<0){
+        left=0;
+      }
+      if(left+width>swWidth){left=swWidth-width;}
+        if(top<0){top=0;}
+        if(top+height>swHeight){top=swHeight-height;}
+        mainBox.style.left=left+'px';
+        mainBox.style.top=top+'px';
+        bigBox.style.display='block';
+        bigBox.style.backgroundPosition=-left*ratio+'px'+' '+-top*ratio+'px';
+    }
+
+    function getPosInElem(event,elem){
+    			return {
+            // clientX, clientY其值是相对于可视窗口（浏览的可视区域）的左上角
+            // getBoundingClientRect该方法获得页面中某个元素的左，上，右和下分别相对浏览器视窗的位置。
+            x:event.clientX-elem.getBoundingClientRect().left,
+    				y:event.clientY-elem.getBoundingClientRect().top
+    			}
+    		}
+
+  </script>
+</body>
+
+</html>

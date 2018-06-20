@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      img{
+        display: block;
+        width: 300px;
+        height: 200px;
+        margin: 105px auto 15px;
+      }
+      .contorl{
+        text-align: center;
+        width: 100%;
+      }
+      .changeMax{
+        transition: all 2s;
+        width: 600px;
+        height: 400px;
+        margin-top: 5px;
+      }
+      .changeMin{
+        transition: all 2s;
+        width: 300px;
+        height: 200px;
+        margin: 105px auto 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="../../轮播图/2/images/5.jpg" alt="pic" title="beautify gire" id="pic" class="xxoo">
+    <div class="contorl">
+      <button type="button" name="button" id="picMax">fangda</button>
+      <button type="button" name="button" id="picMin">fangda</button>
+    </div>
+    <script type="text/javascript">
+      var picMax=document.getElementById('picMax')
+      var picMin=document.getElementById('picMin')
+      var pic=document.getElementById('pic')
+      picMax.onclick=function() {
+          pic.className=pic.className.replace(/changeMin/,'')
+          pic.classList.add('changeMax');
+      }
+      picMin.onclick=function(){
+        pic.className=pic.className.replace(/changeMax/,'')
+        pic.classList.add('changeMin')
+        console.log(pic.className);
+      }
+    </script>
+  </body>
+</html>
