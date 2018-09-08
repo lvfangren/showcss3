@@ -1,120 +1,132 @@
 /*
 参数：picswrap 图片盒子Id
      spans
-     pre  上翻按钮ID
+     prev  上翻按钮ID
      next  下翻按钮ID
-     number 轮播图片数量
-     moveImg
+     number 轮播图片数量（轮播变换次数）
+     touchStop 鼠标移入图片时是否发生暂停
+     clickSpan  鼠标点击图片下方小圆点能否发生图片切换
+     moveTime 切换时间
 */
 
-;(function(window,undefined){
-  var LfrSlide=function(type,options){
+;
+(function(window, undefined) {
+  var LfrSlide = function(options) {
     if (!(this instanceof LfrSlide)) {
-      return LfrSlide(type,options);
+      return LfrSlide(options);
     }
-    console.log('success');
-    this.options=this.extends({
-        // self参数，扩大后可暴露出去
-        moveTime:3000,
-        index:0
-    },options)
+    this.options = this.extends({
+      // self参数，扩大后可暴露出去
+      moveTime: 3000,
+      index: 0,
+      touchStop: true,
+      clickSpan: true
+    }, options)
 
-    // this.index=0;
-
-    this.init(type,this.options);
-    this.event(this.options);
+    // 定时器编号
+    this.timer = undefined;
+    // 获取指定轮播图片数量
+    this.picNum = this.options.number ? this.options.number : this.options.picwrap.children.length;
+    // 初始化方法
+    this.init();
   };
-  LfrSlide.prototype={
-    init(type,options){
-      this.auto(options)
-      this.changePic1(options)
-      // switch (arg) {
-      //   case 1:
-      //
-      //     break;
-      //   case 2:
-      //
-      //     break;
-      //   case 3:
-      //
-      //     break;
-      //   case 4:
-      //
-      //     break;
-      //   case 5:
-      //
-      //     break;
-      //   case 6:
-      //
-      //     break;
-      //   default:
-      //
-      // }
+  LfrSlide.prototype = {
+    init() {
+      this.auto();
+      this.eventBu();
+      this.eventSpan();
+      this.eventPic()
     },
-    auto(options){
-      var that=this;
-      setInterval(function(){
-        options.index++;
-        options.index%=options.number;
-        // console.log(that);
-        that.changeColor(options);
-      },options.moveTime)
-    },
-    event(options){
-      console.log(options.number);
-      var that=this;
-      options.pre.addEventListener('click',()=>{
+    // 定时器方法
+    auto() {
+      var that = this;
+      this.timer = setInterval(() => {
+        that.options.index++;
+        that.options.index %= this.picNum;
+        that.changeColor()
         that.changePic1()
-      },false);
-      options.next.addEventListener('click',()=>{
-        that.changePic1()
-      },false)
+      }, this.options.moveTime)
+      // console.log(this.timer);
     },
-    changePic1(options){
-      // let picwidth=this.getStyle(document.getElementsByTagName('img')[1],'width');
-      // console.log(picwidth);
-      let picwidth=600;
-      // let moveLength=options.number*picwidth;
-      // if (parseInt(options.picswrap.style.left)<-moveLength) {
-      //   options.picswrap.style.left=0+'px';
-      // }else{
-      //   options.picswrap.style.left=parseInt(options.picswrap.style.left)-picwidth+'px';
-      // }
-
-
-      options.picswrap.style.left=parseInt(options.picswrap.style.left)-picwidth+'px';
-
+    // 上，下翻页按钮事件
+    eventBu() {
+      let that = this;
+      this.options.prev.addEventListener('click', () => {
+        // console.log('prev');
+        that.options.index--;
+        that.options.index %= this.picNum;
+        if (that.options.index < 0) {
+          that.options.index = 4;
+        }
+        that.changePic1();
+        that.changeColor();
+      }, false);
+      this.options.next.addEventListener('click', () => {
+        that.options.index++;
+        that.options.index %= this.picNum;
+        that.changePic1();
+        that.changeColor();
+      }, false);
     },
-    changeColor(options){
-      var arrbu=document.getElementById('button').getElementsByTagName('span');
-      console.log(arrbu);
-      for (var i = 0; i < options.number; i++) {
-        arrbu[i].className=''
+    // 暂停自动轮播方法
+    eventPic() {
+      var that = this;
+      if (this.options.touchStop) {
+        this.options.picwrap.addEventListener('mouseover', () => {
+          clearInterval(this.timer);
+        }, false);
+        this.options.picwrap.addEventListener('mouseout', () => {
+          that.auto();
+        }, false);
       }
-      arrbu[options.index].classList.add('on')
+    },
+    // 按钮点击切换方法
+    eventSpan() {
+      var that = this;
+      if (this.options.clickSpan) {
+        for (let i = 0; i < this.options.number; i++) {
+          let spans = document.getElementById('controls').getElementsByTagName('span');
+          spans[i].addEventListener('click', () => {
+            that.options.index = i;
+            that.changePic1()
+            that.changeColor()
+          }, false)
+        }
+      }
+    },
+    // 图片切换方法
+    changePic1() {
+      let picwidth = this.options.picwrap.children[0].width;
+      this.options.picwrap.style.left = this.options.index * -picwidth + 'px';
+    },
+    // 按钮颜色切换方法
+    changeColor() {
+      var arrbu = document.getElementById('controls').getElementsByTagName('span');
+      for (var i = 0; i < this.options.number; i++) {
+        arrbu[i].className = ''
+      }
+      arrbu[this.options.index].classList.add('on')
     },
     // 对象属性clone（伪冒复制）
-    extends(obj1,obj2){
-        for (var k in obj2) {
-          // if (object.hasOwnProperty(k)) {
-              if ((typeof obj2[k])==='string') {
-                obj1[k]=document.getElementById(obj2[k]);
-              }else {
-                obj1[k]=obj2[k];
-              }
-          // }
+    extends(obj1, obj2) {
+      for (var k in obj2) {
+        if ((typeof obj2[k]) === 'string') {
+          obj1[k] = document.getElementById(obj2[k]);
+        } else {
+          obj1[k] = obj2[k];
         }
-        console.log(obj1);
-        return obj1;
+      }
+      return obj1;
     },
-    getStyle(element,cssname){
+    // 获取指定元素样式
+    getStyle(element, cssname) {
       // 样式获取，做了兼容
       if (window.getComputedStyle) {
         return window.getComputedStyle(element)[cssname]
-      }else {
+      } else {
         return element.currentStyle[cssname]
       }
     }
   };
-  window.LfrSlide=LfrSlide;
+  window.LfrSlide = LfrSlide;
 })(window)
